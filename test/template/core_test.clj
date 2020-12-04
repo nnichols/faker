@@ -1,5 +1,5 @@
-(ns {{template}}.core-test
-  (:require [{{template}}.core :as sut]
+(ns faker.core-test
+  (:require [faker.core :as sut]
             [clojure.test :refer [deftest is testing]]))
 
 (deftest sample-test

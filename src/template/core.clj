@@ -1,1 +1,1 @@
-(ns {{template}}.core)
+(ns faker.core)
