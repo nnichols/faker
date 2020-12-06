@@ -11,7 +11,7 @@
   "Drain a java.io.ByteArrayInputStream of all bytes, and cast it to a string.
    IMPORTANT: This mutates the state of `stream`, calling this function against the same stream more will always result in \"\""
   [stream]
-  (java.lang.String. (.readAllBytes stream)))
+  (java.lang.String. (java.io.ByteArrayInputStream/readAllBytes stream)))
 
 (deftest ByteStream->string!-demo
   (testing "Demonstrating that ByteStream->string! is not idempotent"
