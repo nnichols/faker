@@ -106,3 +106,19 @@
   (testing "Demonstrating the route formatting in `->uri`"
     (is (= "https://localhost:443/v1/test" (sut/->uri :https "localhost" 443 "/v1/test")))
     (is (= "ftp://localhost:21/" (sut/->uri :ftp "localhost" 21 "/")))))
+
+(deftest illegal-body-type
+  (testing "Library throws when an unsupported body type is specified"
+    (is (thrown? java.lang.IllegalArgumentException (sut/add-body {} {} :fake)))))
+
+(deftest partial-requests
+  (testing "Ensuring each of the wrappers around `mock-request` have the same defaults"
+    (is (= (dissoc (sut/get "/") :request-method)
+           (dissoc (sut/head "/") :request-method)
+           (dissoc (sut/post "/") :request-method)
+           (dissoc (sut/put "/") :request-method)
+           (dissoc (sut/delete "/") :request-method)
+           (dissoc (sut/connect "/") :request-method)
+           (dissoc (sut/options "/") :request-method)
+           (dissoc (sut/trace "/") :request-method)
+           (dissoc (sut/patch "/") :request-method)))))

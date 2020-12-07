@@ -1,4 +1,5 @@
 (ns faker.core
+  (:refer-clojure :exclude [get])
   (:require [clojure.data.xml :as xml]
             [ring.mock.request :as mock]))
 
@@ -85,3 +86,275 @@
        cookies          (add-cookies cookies)
        content-type     (add-content-type content-type)
        content-length   (add-content-length content-length)))))
+
+;; Convenience wrappers for common HTTP methods
+
+(def get
+  "Create a mock HTTP-style GET request map, as expected by Ring.
+   Expects the following arguments:
+     `resource`:    The string resource/route you wish to request. For example, \"/v1/recipe\" to access http://localhost:8080/v1/recipe
+   Additionally, a map supporting the following options may be supplied as an optional second argument:
+     `protocol`:         The HTTP protocol version to use. Defaults to HTTP/1.1
+     `scheme`:           The URI request scheme to use. Defaults to :http
+     `hostname`:         The URI request target hostname. Defaults to localhost
+     `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
+     `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
+                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+     `headers`:          A map of HTTP headers to add onto the request.
+     `cookies`:          A map of HTTP cookies to add onto the request.
+     `content-type`:     The HTTP content type the request should be sent with. 
+                         Defaults to `application/json` for `body-type` :json, `application/xml` for `body-type` :xml, `application/x-www-form-urlencoded` for `body-type` :form.
+                         For `body-type` inferred, rely on content-type detection in `ring-mock`
+     `content-length`:   The HTTP content length in bytes for the request.
+                         If `body-type` != :raw, `ring-mock` will calculate this value for you.
+     `body-type`:        The keyword type of content in the request body, which is used to determine how to serialize EDN into the appropriate content-type and to set the `content-type`.
+                         Expects one of :raw, :xml, :json, :form, :inferred.
+                         For :raw, assoc the `body` onto the request as is
+                         For :json, serialize the `body` with `cheshire` and set `content-type` to `application/json`
+                         For :xml, serialize the `body` with `clojure.data.xml` and set `content-type` to `application/xml`
+                         For :form, serialize the `body` as with `ring-mock` and set `content-type` to `application/x-www-form-urlencoded`
+                         For :inferred, use the automatic parsing in `ring-mock` and have it set the appropriate `content-type`
+                         Defaults to :inferred
+     `body`:             The body of the request to serialize according to `body-type`
+     `query-parameters`: A map of query parameters to encode and add onto the request"
+  (partial mock-request :get))
+
+(def head
+  "Create a mock HTTP-style HEAD request map, as expected by Ring.
+   Expects the following arguments:
+     `resource`:    The string resource/route you wish to request. For example, \"/v1/recipe\" to access http://localhost:8080/v1/recipe
+   Additionally, a map supporting the following options may be supplied as an optional second argument:
+     `protocol`:         The HTTP protocol version to use. Defaults to HTTP/1.1
+     `scheme`:           The URI request scheme to use. Defaults to :http
+     `hostname`:         The URI request target hostname. Defaults to localhost
+     `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
+     `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
+                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+     `headers`:          A map of HTTP headers to add onto the request.
+     `cookies`:          A map of HTTP cookies to add onto the request.
+     `content-type`:     The HTTP content type the request should be sent with. 
+                         Defaults to `application/json` for `body-type` :json, `application/xml` for `body-type` :xml, `application/x-www-form-urlencoded` for `body-type` :form.
+                         For `body-type` inferred, rely on content-type detection in `ring-mock`
+     `content-length`:   The HTTP content length in bytes for the request.
+                         If `body-type` != :raw, `ring-mock` will calculate this value for you.
+     `body-type`:        The keyword type of content in the request body, which is used to determine how to serialize EDN into the appropriate content-type and to set the `content-type`.
+                         Expects one of :raw, :xml, :json, :form, :inferred.
+                         For :raw, assoc the `body` onto the request as is
+                         For :json, serialize the `body` with `cheshire` and set `content-type` to `application/json`
+                         For :xml, serialize the `body` with `clojure.data.xml` and set `content-type` to `application/xml`
+                         For :form, serialize the `body` as with `ring-mock` and set `content-type` to `application/x-www-form-urlencoded`
+                         For :inferred, use the automatic parsing in `ring-mock` and have it set the appropriate `content-type`
+                         Defaults to :inferred
+     `body`:             The body of the request to serialize according to `body-type`
+     `query-parameters`: A map of query parameters to encode and add onto the request"
+  (partial mock-request :head))
+
+(def post
+  "Create a mock HTTP-style POST request map, as expected by Ring.
+   Expects the following arguments:
+     `resource`:    The string resource/route you wish to request. For example, \"/v1/recipe\" to access http://localhost:8080/v1/recipe
+   Additionally, a map supporting the following options may be supplied as an optional second argument:
+     `protocol`:         The HTTP protocol version to use. Defaults to HTTP/1.1
+     `scheme`:           The URI request scheme to use. Defaults to :http
+     `hostname`:         The URI request target hostname. Defaults to localhost
+     `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
+     `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
+                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+     `headers`:          A map of HTTP headers to add onto the request.
+     `cookies`:          A map of HTTP cookies to add onto the request.
+     `content-type`:     The HTTP content type the request should be sent with. 
+                         Defaults to `application/json` for `body-type` :json, `application/xml` for `body-type` :xml, `application/x-www-form-urlencoded` for `body-type` :form.
+                         For `body-type` inferred, rely on content-type detection in `ring-mock`
+     `content-length`:   The HTTP content length in bytes for the request.
+                         If `body-type` != :raw, `ring-mock` will calculate this value for you.
+     `body-type`:        The keyword type of content in the request body, which is used to determine how to serialize EDN into the appropriate content-type and to set the `content-type`.
+                         Expects one of :raw, :xml, :json, :form, :inferred.
+                         For :raw, assoc the `body` onto the request as is
+                         For :json, serialize the `body` with `cheshire` and set `content-type` to `application/json`
+                         For :xml, serialize the `body` with `clojure.data.xml` and set `content-type` to `application/xml`
+                         For :form, serialize the `body` as with `ring-mock` and set `content-type` to `application/x-www-form-urlencoded`
+                         For :inferred, use the automatic parsing in `ring-mock` and have it set the appropriate `content-type`
+                         Defaults to :inferred
+     `body`:             The body of the request to serialize according to `body-type`
+     `query-parameters`: A map of query parameters to encode and add onto the request"
+  (partial mock-request :post))
+
+(def put
+  "Create a mock HTTP-style PUT request map, as expected by Ring.
+   Expects the following arguments:
+     `resource`:    The string resource/route you wish to request. For example, \"/v1/recipe\" to access http://localhost:8080/v1/recipe
+   Additionally, a map supporting the following options may be supplied as an optional second argument:
+     `protocol`:         The HTTP protocol version to use. Defaults to HTTP/1.1
+     `scheme`:           The URI request scheme to use. Defaults to :http
+     `hostname`:         The URI request target hostname. Defaults to localhost
+     `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
+     `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
+                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+     `headers`:          A map of HTTP headers to add onto the request.
+     `cookies`:          A map of HTTP cookies to add onto the request.
+     `content-type`:     The HTTP content type the request should be sent with. 
+                         Defaults to `application/json` for `body-type` :json, `application/xml` for `body-type` :xml, `application/x-www-form-urlencoded` for `body-type` :form.
+                         For `body-type` inferred, rely on content-type detection in `ring-mock`
+     `content-length`:   The HTTP content length in bytes for the request.
+                         If `body-type` != :raw, `ring-mock` will calculate this value for you.
+     `body-type`:        The keyword type of content in the request body, which is used to determine how to serialize EDN into the appropriate content-type and to set the `content-type`.
+                         Expects one of :raw, :xml, :json, :form, :inferred.
+                         For :raw, assoc the `body` onto the request as is
+                         For :json, serialize the `body` with `cheshire` and set `content-type` to `application/json`
+                         For :xml, serialize the `body` with `clojure.data.xml` and set `content-type` to `application/xml`
+                         For :form, serialize the `body` as with `ring-mock` and set `content-type` to `application/x-www-form-urlencoded`
+                         For :inferred, use the automatic parsing in `ring-mock` and have it set the appropriate `content-type`
+                         Defaults to :inferred
+     `body`:             The body of the request to serialize according to `body-type`
+     `query-parameters`: A map of query parameters to encode and add onto the request"
+  (partial mock-request :put))
+
+(def delete
+  "Create a mock HTTP-style DELETE request map, as expected by Ring.
+   Expects the following arguments:
+     `resource`:    The string resource/route you wish to request. For example, \"/v1/recipe\" to access http://localhost:8080/v1/recipe
+   Additionally, a map supporting the following options may be supplied as an optional second argument:
+     `protocol`:         The HTTP protocol version to use. Defaults to HTTP/1.1
+     `scheme`:           The URI request scheme to use. Defaults to :http
+     `hostname`:         The URI request target hostname. Defaults to localhost
+     `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
+     `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
+                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+     `headers`:          A map of HTTP headers to add onto the request.
+     `cookies`:          A map of HTTP cookies to add onto the request.
+     `content-type`:     The HTTP content type the request should be sent with. 
+                         Defaults to `application/json` for `body-type` :json, `application/xml` for `body-type` :xml, `application/x-www-form-urlencoded` for `body-type` :form.
+                         For `body-type` inferred, rely on content-type detection in `ring-mock`
+     `content-length`:   The HTTP content length in bytes for the request.
+                         If `body-type` != :raw, `ring-mock` will calculate this value for you.
+     `body-type`:        The keyword type of content in the request body, which is used to determine how to serialize EDN into the appropriate content-type and to set the `content-type`.
+                         Expects one of :raw, :xml, :json, :form, :inferred.
+                         For :raw, assoc the `body` onto the request as is
+                         For :json, serialize the `body` with `cheshire` and set `content-type` to `application/json`
+                         For :xml, serialize the `body` with `clojure.data.xml` and set `content-type` to `application/xml`
+                         For :form, serialize the `body` as with `ring-mock` and set `content-type` to `application/x-www-form-urlencoded`
+                         For :inferred, use the automatic parsing in `ring-mock` and have it set the appropriate `content-type`
+                         Defaults to :inferred
+     `body`:             The body of the request to serialize according to `body-type`
+     `query-parameters`: A map of query parameters to encode and add onto the request"
+  (partial mock-request :delete))
+
+(def connect
+  "Create a mock HTTP-style CONNECT request map, as expected by Ring.
+   Expects the following arguments:
+     `resource`:    The string resource/route you wish to request. For example, \"/v1/recipe\" to access http://localhost:8080/v1/recipe
+   Additionally, a map supporting the following options may be supplied as an optional second argument:
+     `protocol`:         The HTTP protocol version to use. Defaults to HTTP/1.1
+     `scheme`:           The URI request scheme to use. Defaults to :http
+     `hostname`:         The URI request target hostname. Defaults to localhost
+     `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
+     `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
+                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+     `headers`:          A map of HTTP headers to add onto the request.
+     `cookies`:          A map of HTTP cookies to add onto the request.
+     `content-type`:     The HTTP content type the request should be sent with. 
+                         Defaults to `application/json` for `body-type` :json, `application/xml` for `body-type` :xml, `application/x-www-form-urlencoded` for `body-type` :form.
+                         For `body-type` inferred, rely on content-type detection in `ring-mock`
+     `content-length`:   The HTTP content length in bytes for the request.
+                         If `body-type` != :raw, `ring-mock` will calculate this value for you.
+     `body-type`:        The keyword type of content in the request body, which is used to determine how to serialize EDN into the appropriate content-type and to set the `content-type`.
+                         Expects one of :raw, :xml, :json, :form, :inferred.
+                         For :raw, assoc the `body` onto the request as is
+                         For :json, serialize the `body` with `cheshire` and set `content-type` to `application/json`
+                         For :xml, serialize the `body` with `clojure.data.xml` and set `content-type` to `application/xml`
+                         For :form, serialize the `body` as with `ring-mock` and set `content-type` to `application/x-www-form-urlencoded`
+                         For :inferred, use the automatic parsing in `ring-mock` and have it set the appropriate `content-type`
+                         Defaults to :inferred
+     `body`:             The body of the request to serialize according to `body-type`
+     `query-parameters`: A map of query parameters to encode and add onto the request"
+  (partial mock-request :connect))
+
+(def options
+  "Create a mock HTTP-style OPTIONS request map, as expected by Ring.
+   Expects the following arguments:
+     `resource`:    The string resource/route you wish to request. For example, \"/v1/recipe\" to access http://localhost:8080/v1/recipe
+   Additionally, a map supporting the following options may be supplied as an optional second argument:
+     `protocol`:         The HTTP protocol version to use. Defaults to HTTP/1.1
+     `scheme`:           The URI request scheme to use. Defaults to :http
+     `hostname`:         The URI request target hostname. Defaults to localhost
+     `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
+     `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
+                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+     `headers`:          A map of HTTP headers to add onto the request.
+     `cookies`:          A map of HTTP cookies to add onto the request.
+     `content-type`:     The HTTP content type the request should be sent with. 
+                         Defaults to `application/json` for `body-type` :json, `application/xml` for `body-type` :xml, `application/x-www-form-urlencoded` for `body-type` :form.
+                         For `body-type` inferred, rely on content-type detection in `ring-mock`
+     `content-length`:   The HTTP content length in bytes for the request.
+                         If `body-type` != :raw, `ring-mock` will calculate this value for you.
+     `body-type`:        The keyword type of content in the request body, which is used to determine how to serialize EDN into the appropriate content-type and to set the `content-type`.
+                         Expects one of :raw, :xml, :json, :form, :inferred.
+                         For :raw, assoc the `body` onto the request as is
+                         For :json, serialize the `body` with `cheshire` and set `content-type` to `application/json`
+                         For :xml, serialize the `body` with `clojure.data.xml` and set `content-type` to `application/xml`
+                         For :form, serialize the `body` as with `ring-mock` and set `content-type` to `application/x-www-form-urlencoded`
+                         For :inferred, use the automatic parsing in `ring-mock` and have it set the appropriate `content-type`
+                         Defaults to :inferred
+     `body`:             The body of the request to serialize according to `body-type`
+     `query-parameters`: A map of query parameters to encode and add onto the request"
+  (partial mock-request :options))
+
+(def trace
+  "Create a mock HTTP-style TRACE request map, as expected by Ring.
+   Expects the following arguments:
+     `resource`:    The string resource/route you wish to request. For example, \"/v1/recipe\" to access http://localhost:8080/v1/recipe
+   Additionally, a map supporting the following options may be supplied as an optional second argument:
+     `protocol`:         The HTTP protocol version to use. Defaults to HTTP/1.1
+     `scheme`:           The URI request scheme to use. Defaults to :http
+     `hostname`:         The URI request target hostname. Defaults to localhost
+     `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
+     `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
+                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+     `headers`:          A map of HTTP headers to add onto the request.
+     `cookies`:          A map of HTTP cookies to add onto the request.
+     `content-type`:     The HTTP content type the request should be sent with. 
+                         Defaults to `application/json` for `body-type` :json, `application/xml` for `body-type` :xml, `application/x-www-form-urlencoded` for `body-type` :form.
+                         For `body-type` inferred, rely on content-type detection in `ring-mock`
+     `content-length`:   The HTTP content length in bytes for the request.
+                         If `body-type` != :raw, `ring-mock` will calculate this value for you.
+     `body-type`:        The keyword type of content in the request body, which is used to determine how to serialize EDN into the appropriate content-type and to set the `content-type`.
+                         Expects one of :raw, :xml, :json, :form, :inferred.
+                         For :raw, assoc the `body` onto the request as is
+                         For :json, serialize the `body` with `cheshire` and set `content-type` to `application/json`
+                         For :xml, serialize the `body` with `clojure.data.xml` and set `content-type` to `application/xml`
+                         For :form, serialize the `body` as with `ring-mock` and set `content-type` to `application/x-www-form-urlencoded`
+                         For :inferred, use the automatic parsing in `ring-mock` and have it set the appropriate `content-type`
+                         Defaults to :inferred
+     `body`:             The body of the request to serialize according to `body-type`
+     `query-parameters`: A map of query parameters to encode and add onto the request"
+  (partial mock-request :trace))
+
+(def patch
+  "Create a mock HTTP-style PATCH request map, as expected by Ring.
+   Expects the following arguments:
+     `resource`:    The string resource/route you wish to request. For example, \"/v1/recipe\" to access http://localhost:8080/v1/recipe
+   Additionally, a map supporting the following options may be supplied as an optional second argument:
+     `protocol`:         The HTTP protocol version to use. Defaults to HTTP/1.1
+     `scheme`:           The URI request scheme to use. Defaults to :http
+     `hostname`:         The URI request target hostname. Defaults to localhost
+     `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
+     `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
+                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+     `headers`:          A map of HTTP headers to add onto the request.
+     `cookies`:          A map of HTTP cookies to add onto the request.
+     `content-type`:     The HTTP content type the request should be sent with. 
+                         Defaults to `application/json` for `body-type` :json, `application/xml` for `body-type` :xml, `application/x-www-form-urlencoded` for `body-type` :form.
+                         For `body-type` inferred, rely on content-type detection in `ring-mock`
+     `content-length`:   The HTTP content length in bytes for the request.
+                         If `body-type` != :raw, `ring-mock` will calculate this value for you.
+     `body-type`:        The keyword type of content in the request body, which is used to determine how to serialize EDN into the appropriate content-type and to set the `content-type`.
+                         Expects one of :raw, :xml, :json, :form, :inferred.
+                         For :raw, assoc the `body` onto the request as is
+                         For :json, serialize the `body` with `cheshire` and set `content-type` to `application/json`
+                         For :xml, serialize the `body` with `clojure.data.xml` and set `content-type` to `application/xml`
+                         For :form, serialize the `body` as with `ring-mock` and set `content-type` to `application/x-www-form-urlencoded`
+                         For :inferred, use the automatic parsing in `ring-mock` and have it set the appropriate `content-type`
+                         Defaults to :inferred
+     `body`:             The body of the request to serialize according to `body-type`
+     `query-parameters`: A map of query parameters to encode and add onto the request"
+  (partial mock-request :patch))
