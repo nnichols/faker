@@ -87,6 +87,7 @@
       (is (= "{\"some\":\"key\",\"another\":\"value\"}" (ByteStream->string! (:body json-body-request))))
       (is (= sample-request (-> json-body-request (dissoc :content-length :content-type :body) (update :headers dissoc "content-type" "content-length"))))
 
+      (is (= "pog=champ&id=3" (ByteStream->string! (:body (sut/add-body sample-request {:pog "champ" :id 3} :form)))))
       (is (= 14 (:content-length form-body-request)))
       (is (= "application/x-www-form-urlencoded" (:content-type form-body-request)))
       (is (= {"host" "localhost:443", "content-type" "application/x-www-form-urlencoded", "content-length" "14"} (:headers form-body-request)))
