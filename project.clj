@@ -1,4 +1,4 @@
-(defproject com.wallbrew/faker "1.0.0"
+(defproject nnichols/faker "1.0.0"
   :description "A clojure library for creating fake requests"
   :url "https://github.com/nnichols/faker"
   :license {:name "MIT"

@@ -47,7 +47,7 @@
      `hostname`:         The URI request target hostname. Defaults to localhost
      `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
      `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
-                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+                         Defaults to false, meaning the URI will be constructed from the `scheme`, `hostname`, `port`, and `resource`
      `headers`:          A map of HTTP headers to add onto the request.
      `cookies`:          A map of HTTP cookies to add onto the request.
      `content-type`:     The HTTP content type the request should be sent with. 
@@ -99,7 +99,7 @@
      `hostname`:         The URI request target hostname. Defaults to localhost
      `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
      `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
-                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+                         Defaults to false, meaning the URI will be constructed from the `scheme`, `hostname`, `port`, and `resource`
      `headers`:          A map of HTTP headers to add onto the request.
      `cookies`:          A map of HTTP cookies to add onto the request.
      `content-type`:     The HTTP content type the request should be sent with. 
@@ -129,7 +129,7 @@
      `hostname`:         The URI request target hostname. Defaults to localhost
      `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
      `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
-                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+                         Defaults to false, meaning the URI will be constructed from the `scheme`, `hostname`, `port`, and `resource`
      `headers`:          A map of HTTP headers to add onto the request.
      `cookies`:          A map of HTTP cookies to add onto the request.
      `content-type`:     The HTTP content type the request should be sent with. 
@@ -159,7 +159,7 @@
      `hostname`:         The URI request target hostname. Defaults to localhost
      `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
      `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
-                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+                         Defaults to false, meaning the URI will be constructed from the `scheme`, `hostname`, `port`, and `resource`
      `headers`:          A map of HTTP headers to add onto the request.
      `cookies`:          A map of HTTP cookies to add onto the request.
      `content-type`:     The HTTP content type the request should be sent with. 
@@ -189,7 +189,7 @@
      `hostname`:         The URI request target hostname. Defaults to localhost
      `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
      `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
-                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+                         Defaults to false, meaning the URI will be constructed from the `scheme`, `hostname`, `port`, and `resource`
      `headers`:          A map of HTTP headers to add onto the request.
      `cookies`:          A map of HTTP cookies to add onto the request.
      `content-type`:     The HTTP content type the request should be sent with. 
@@ -219,7 +219,7 @@
      `hostname`:         The URI request target hostname. Defaults to localhost
      `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
      `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
-                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+                         Defaults to false, meaning the URI will be constructed from the `scheme`, `hostname`, `port`, and `resource`
      `headers`:          A map of HTTP headers to add onto the request.
      `cookies`:          A map of HTTP cookies to add onto the request.
      `content-type`:     The HTTP content type the request should be sent with. 
@@ -249,7 +249,7 @@
      `hostname`:         The URI request target hostname. Defaults to localhost
      `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
      `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
-                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+                         Defaults to false, meaning the URI will be constructed from the `scheme`, `hostname`, `port`, and `resource`
      `headers`:          A map of HTTP headers to add onto the request.
      `cookies`:          A map of HTTP cookies to add onto the request.
      `content-type`:     The HTTP content type the request should be sent with. 
@@ -279,7 +279,7 @@
      `hostname`:         The URI request target hostname. Defaults to localhost
      `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
      `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
-                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+                         Defaults to false, meaning the URI will be constructed from the `scheme`, `hostname`, `port`, and `resource`
      `headers`:          A map of HTTP headers to add onto the request.
      `cookies`:          A map of HTTP cookies to add onto the request.
      `content-type`:     The HTTP content type the request should be sent with. 
@@ -309,7 +309,7 @@
      `hostname`:         The URI request target hostname. Defaults to localhost
      `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
      `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
-                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+                         Defaults to false, meaning the URI will be constructed from the `scheme`, `hostname`, `port`, and `resource`
      `headers`:          A map of HTTP headers to add onto the request.
      `cookies`:          A map of HTTP cookies to add onto the request.
      `content-type`:     The HTTP content type the request should be sent with. 
@@ -339,7 +339,7 @@
      `hostname`:         The URI request target hostname. Defaults to localhost
      `port`:             The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
      `custom-route?`:    A flag to determine if `resource` should be treated as a fully qualified route. 
-                         Defaults to false, meaning the URI will be costruced from the `scheme`, `hostname`, `port`, and `resource`
+                         Defaults to false, meaning the URI will be constructed from the `scheme`, `hostname`, `port`, and `resource`
      `headers`:          A map of HTTP headers to add onto the request.
      `cookies`:          A map of HTTP cookies to add onto the request.
      `content-type`:     The HTTP content type the request should be sent with. 
