@@ -1,6 +1,7 @@
 # faker
 
 <a href="https://icons8.com/icon/xbZcFKwb9J7z/fraud"><img src="resources/icons8-fraud.png"></a>
+[![Clojars Project](https://img.shields.io/clojars/v/nnichols/faker.svg)](https://clojars.org/nnichols/faker)
 [![Dependencies Status](https://versions.deps.co/nnichols/faker/status.svg)](https://versions.deps.co/nnichols/faker)
 [![cljdoc badge](https://cljdoc.org/badge/nnichols/faker)](https://cljdoc.org/d/nnichols/faker/CURRENT)
 ![Github Runner](https://github.com/nnichols/faker/workflows/Clojure%20CI/badge.svg)
