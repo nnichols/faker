@@ -120,7 +120,7 @@ This can be helpful when writing middleware/handlers for malformed or malicious 
 
 ## Licensing
 
-Copyright © 2020 [Nick Nichols](https://nnichols.github.io/)
+Copyright © 2020-2021 [Nick Nichols](https://nnichols.github.io/)
 
 Distributed under the [MIT License](https://github.com/nnichols/faker/blob/master/LICENSE)
 
