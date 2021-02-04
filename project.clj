@@ -10,6 +10,6 @@
              :dev     {:dependencies [[circleci/bond "0.4.0"]
                                       [cheshire "5.10.0"]
                                       [compojure "1.6.2"]
-                                      [ring/ring-core "1.8.2"]
+                                      [ring/ring-core "1.9.0"]
                                       [ring/ring-json "0.5.0"]]}}
   :min-lein-version "2.5.3")
