@@ -9,11 +9,12 @@
 A Clojure library for generating fake HTTP requests for [Ring](https://github.com/ring-clojure/ring).
 
 > Faker is a negative word, but it's still cool.
+>
 > - Lee "Faker" Sang-hyeok from [*SK Telecom T1*](https://en.wikipedia.org/wiki/Faker_(gamer))
 
 ## Installation
 
-A deployed copy of the most recent version of [nature can be found on clojars.](https://clojars.org/nnichols/faker)
+A deployed copy of the most recent version of [faker can be found on clojars.](https://clojars.org/nnichols/faker)
 To use it, add the following as a dependency in your `project.clj` file:
 
 [![Clojars Project](http://clojars.org/nnichols/faker/latest-version.svg)](http://clojars.org/nnichols/faker)
