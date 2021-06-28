@@ -47,20 +47,22 @@ This request is ready to pass directly to your Ring server for testing.
 Since your application's middleware and routes are highly configurable, the `mock-request` function also accepts an optional map to customize the request.
 The following options are supported:
 
-- `protocol`: The HTTP protocol version to use. Defaults to HTTP/1.1
-- `scheme`: The URI request scheme to use. Defaults to :http
-- `hostname`: The URI request target hostname. Defaults to localhost
-- `port`: The URI request port number. If the scheme is :https, default is set to 443. Otherwise, 8080
-- `custom-route?`: A flag to determine if `resource` should be treated as a fully qualified route. Defaults to false, meaning the URI will be constructed from the `scheme`, `hostname`, `port`, and `resource`
-- `headers`: A map of HTTP headers to add onto the request.
-- `cookies`: A map of HTTP cookies to add onto the request.
-- `content-type`: The HTTP content type the request should be sent with. Defaults to `application/json` for `body-type` :json, `application/xml` for `body-type` :xml, `application/x-www-form-urlencoded` for `body-type` :form. For `body-type` inferred, rely on content-type detection in `ring-mock`
-- `content-length`: The HTTP content length in bytes for the request. If `body-type` != :raw, `ring-mock` will calculate this value for you.
-- `body-type`: The keyword type of content in the request body, which is used to determine how to serialize EDN into the appropriate content-type and to set the `content-type` Expects one of :raw, :xml, :json, :form, :inferred. For :raw, assoc the `body` onto the request as is For :json, serialize the `body` with `cheshire` and set `content-type` to `application/json` For :xml, serialize the `body` with `clojure.data.xml` and set `content-type` to `application/xml` For :form, serialize the `body` as with `ring-mock` and set `content-type` to `application/x-www-form-urlencoded` For :inferred, use the automatic parsing in `ring-mock` and have it set the appropriate `content-type` Defaults to :inferred
-- `body`: The body of the request to serialize according to `body-type`
-- `query-parameters`: A map of query parameters to encode and add onto the request.
+| Option              | Default Value                  | Description                                                          |
+|---------------------|--------------------------------|----------------------------------------------------------------------|
+| `:protocol`         | `"HTTP/1.1"`                   | The HTTP protocol version of the generated request |
+| `:scheme`           | `:http`                        | The URI request scheme to use |
+| `:hostname`         | `"localhost"`                  | The hostname to embed in the URI |
+| `:port`             | Inferred based on `:scheme`    | The port number to embed in the URI |
+| `:custom-route?`    | `false`                        | A flag to determine if `resource` should be treated as a fully qualified route. When false, generate a URI from the `scheme`, `hostname`, `port`, and `resource` |
+| `:headers`          | `{}`                           | A map of HTTP headers to add on to the request |
+| `:cookies`          | `{}`                           | A map of HTTP cookies to add on to the request |
+| `:content-type`     | Inferred based on `:body-type` | The HTTP content type the request should be sent with. Defaults to `application/json` for `body-type` :json, `application/xml` for `body-type` :xml, `application/x-www-form-urlencoded` for `body-type` :form. For `body-type` inferred, rely on content-type detection in `ring-mock` |
+| `:content-length`   | Inferred based on `:body`      | The HTTP content length in bytes for the request. If `body-type` != :raw, `ring-mock` will calculate this value for you. |
+| `:body-type`        | `:inferred`                    | The keyword type of content in the request body, which is used to determine how to serialize EDN into the appropriate content-type and to set the `content-type` Expects one of :raw, :xml, :json, :form, :inferred. For :raw, assoc the `body` onto the request as is For :json, serialize the `body` with `cheshire` and set `content-type` to `application/json` For :xml, serialize the `body` with `clojure.data.xml` and set `content-type` to `application/xml` For :form, serialize the `body` as with `ring-mock` and set `content-type` to `application/x-www-form-urlencoded` For :inferred, use the automatic parsing in `ring-mock` and have it set the appropriate `content-type` |
+| `:body`             | `nil`                          | The body of the HTTP request to serialize according to `body-type` |
+| `:query-parameters` | `{}`                           | A map of query parameters to encode and add onto the request. |
 
-For example
+For example:
 
 ```clojure
 (faker/mock-request :get "/" {:headers   {"auth" "my-secure-token"}
@@ -105,20 +107,20 @@ These functions support the exact same options as `mock-request`
 
 Currently supported methods are:
 
-- GET
-- HEAD
-- PUT
-- DELETE
-- CONNECT
-- OPTIONS
-- TRACE
-- PATCH
+- `GET`
+- `HEAD`
+- `PUT`
+- `DELETE`
+- `CONNECT`
+- `OPTIONS`
+- `TRACE`
+- `PATCH`
 
 Each of these HTTP methods corresponds 1:1 with a lowercase function name in `faker.core`
 
 This library currently _does not_ attempt to coerce requests or enforce HTTP standards and best practices on generated requests.
 For example, you may create a GET request with a body.
-This can be helpful when writing middleware/handlers for malformed or malicious requests.
+This can be helpful when writing middleware/handlers for malformed, malicious, or unusual requests.
 
 ## Licensing
 
@@ -127,3 +129,8 @@ Copyright © 2020-2021 [Nick Nichols](https://nnichols.github.io/)
 Distributed under the [MIT License](https://github.com/nnichols/faker/blob/master/LICENSE)
 
 [Fraud Icon by Icons8](https://icons8.com/icon/xbZcFKwb9J7z/fraud)
+
+### TODO
+
+- Stand up a Ring server in tests, and test normal consumption
+- Support Transit protocol for EDN
