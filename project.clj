@@ -7,7 +7,7 @@
                  [org.clojure/clojure "1.10.3"]
                  [ring/ring-mock "0.4.0"]]
   :profiles {:uberjar {:aot :all}
-             :dev     {:dependencies [[circleci/bond "0.5.0"]
+             :dev     {:dependencies [[circleci/bond "0.6.0"]
                                       [cheshire "5.10.0"]
                                       [compojure "1.6.2"]
                                       [ring/ring-core "1.9.4"]
