@@ -9,7 +9,7 @@
   :profiles {:uberjar {:aot :all}
              :dev     {:dependencies [[circleci/bond "0.6.0"]
                                       [cheshire "5.10.0"]
-                                      [compojure "1.6.2"]
+                                      [compojure "1.7.0"]
                                       [ring/ring-core "1.9.6"]
                                       [ring/ring-json "0.5.1"]]}}
   :min-lein-version "2.5.3")
