@@ -3,7 +3,7 @@
   :url "https://github.com/nnichols/faker"
   :license {:name "MIT"
             :url  "https://opensource.org/licenses/MIT"}
-  :dependencies [[org.clojure/data.xml "0.2.0-alpha8"]
+  :dependencies [[org.clojure/data.xml "0.2.0-alpha9"]
                  [org.clojure/clojure "1.11.1"]
                  [ring/ring-mock "0.4.0"]]
   :profiles {:uberjar {:aot :all}
