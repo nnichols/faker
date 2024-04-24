@@ -4,7 +4,7 @@
   :license {:name "MIT"
             :url  "https://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/data.xml "0.2.0-alpha9"]
-                 [org.clojure/clojure "1.11.2"]
+                 [org.clojure/clojure "1.11.3"]
                  [ring/ring-mock "0.4.0"]]
   :profiles {:uberjar {:aot :all}
              :dev     {:dependencies [[circleci/bond "0.6.0"]
