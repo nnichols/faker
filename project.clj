@@ -8,7 +8,7 @@
                  [ring/ring-mock "0.4.0"]]
   :profiles {:uberjar {:aot :all}
              :dev     {:dependencies [[circleci/bond "0.6.0"]
-                                      [cheshire "5.13.0"]
+                                      [cheshire "6.0.0"]
                                       [compojure "1.7.1"]
                                       [ring/ring-core "1.13.0"]
                                       [ring/ring-json "0.5.1"]]}}
